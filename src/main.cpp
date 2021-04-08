@@ -8,7 +8,7 @@ using std::cout;
 
 int main() {
   System system;
-  // long value = system.UpTime();
+  // int value = system.TotalProcesses();
   // cout << value << "\n";
   NCursesDisplay::Display(system);
 }

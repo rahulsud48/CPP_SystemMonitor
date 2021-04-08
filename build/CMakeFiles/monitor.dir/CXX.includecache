@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+../include/linux_parser.h
+fstream
+-
+regex
+-
+string
+-
+
 ../include/ncurses_display.h
 curses.h
 -
@@ -29,6 +37,22 @@ process.h
 ../include/process.h
 processor.h
 ../include/processor.h
+
+/home/workspace/CPP_SystemMonitor/src/linux_parser.cpp
+dirent.h
+-
+unistd.h
+-
+sstream
+-
+string
+-
+vector
+-
+iostream
+-
+linux_parser.h
+/home/workspace/CPP_SystemMonitor/src/linux_parser.h
 
 /home/workspace/CPP_SystemMonitor/src/main.cpp
 ncurses_display.h
