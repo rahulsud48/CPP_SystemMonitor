@@ -1,7 +1,7 @@
 # CPP_SystemMonitor
 
 
-![System Monitor](images/monitor.png)
+![System Monitor](images/system_monitor.png)
 
 
 ## Make
