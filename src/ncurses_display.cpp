@@ -3,6 +3,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <algorithm>
 
 #include "format.h"
 #include "ncurses_display.h"
@@ -54,6 +55,7 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
 
 void NCursesDisplay::DisplayProcesses(std::vector<Process>& processes,
                                       WINDOW* window, int n) {
+  std::sort(processes.begin(), processes.end()); // Sort the processes
   int row{0};
   int const pid_column{2};
   int const user_column{9};
