@@ -51,5 +51,6 @@ int System::TotalProcesses() {
 
 // TODO: Return the number of seconds since the system started running
 long int System::UpTime() {
-    return LinuxParser::UpTime(); 
+    long value = LinuxParser::UpTime(); 
+    return value;
 }

@@ -114,7 +114,7 @@ long LinuxParser::UpTime() {
     linestream >> uptime >> idletime;
     uptime_long = stol(uptime);
   }
-  return uptime_long; 
+  return stol(uptime); 
 }
 
 // TODO: Read and return the number of jiffies for the system
