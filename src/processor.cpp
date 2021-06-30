@@ -1,27 +1,30 @@
 #include "processor.h"
-#include "linux_parser.h"
 
-using std::string;
-using std::stoi;
-
-// DONE: Return the aggregate CPU utilization
+// TODO: Return the aggregate CPU utilization
 float Processor::Utilization() {
-  string cpu, user, nice, system, idle, iowait, irq, softirq, steal, guest,
-      guest_nice;
-  string line;
-  std::ifstream stream(LinuxParser::kProcDirectory +
-                       LinuxParser::kStatFilename);
-  if (stream.is_open()) {
-    std::getline(stream, line);
-    std::istringstream linestream(line);
-    linestream >> cpu >> user >> nice >> system >> idle >> iowait >> irq >>
-        softirq >> steal >> guest >> guest_nice;
-  }
-
-  // Method from https://stackoverflow.com/a/23376195
-  int idletime = stoi(idle) + stoi(iowait);
-  int nonidletime = stoi(user) + stoi(nice) + stoi(system) + stoi(irq) + stoi(softirq) + stoi(steal);
-  float totaltime = idletime + nonidletime;
-  
-  return (totaltime - idletime)/totaltime;
+    vector<string> cpu_data = LinuxParser::CpuUtilization();
+    float sum = 0;
+    int count = 0;
+    int idle, iowait;
+    float cpu_perc;
+    for (int  i = 0; i < cpu_data.size(); i++){
+        string s = cpu_data[i];
+        int x = 0;
+        stringstream ss(s);
+        ss >> x;
+        if (count == 3){
+            idle = x;
+        }
+        if (count == 4){
+            iowait = x;
+        }
+        sum += x;
+        count++;
+    }
+    // cout << sum << "\n";
+    // cout << iowait << "\n";
+    // cout << idle << "\n";
+    cpu_perc = (sum - iowait - idle)/sum;
+    // cout << cpu_perc << "\n";
+    return cpu_perc;
 }
