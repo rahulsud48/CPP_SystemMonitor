@@ -14,5 +14,5 @@ int main() {
   cout<<"uptime: :" << LinuxParser::UpTime()<<"\n";
   // float value = processor.Utilization();
   // cout << value << "\n";
-  NCursesDisplay::Display(system);
+  // NCursesDisplay::Display(system);
 }
