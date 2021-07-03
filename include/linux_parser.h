@@ -26,6 +26,7 @@ int TotalProcesses();
 int RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
+void removeCharsFromString( std::string&, char*);
 
 // CPU
 enum CPUStates {

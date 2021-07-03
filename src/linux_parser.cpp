@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+# include <algorithm>
 
 #include "linux_parser.h"
 
@@ -101,24 +102,32 @@ float LinuxParser::MemoryUtilization() {
   return (totalmemory - freememory)/totalmemory;
 }
 
+void LinuxParser::removeCharsFromString( std::string &str, char* charsToRemove ) {
+   for ( unsigned int i = 0; i < strlen(charsToRemove); ++i ) {
+      str.erase( remove(str.begin(), str.end(), charsToRemove[i]), str.end() );
+   }
+}
 
 // TODO: Read and return the system uptime
-long LinuxParser::UpTime() {
-  string line,uptime, idletime;
-  long uptime_long;
+long int LinuxParser::UpTime() {
+  string uptime, idletime, line;
+  string uptime2="";
+  // char chars[] = ":";
   std::ifstream stream(kProcDirectory + kUptimeFilename);
-
   if (stream.is_open()) {
-    while (std::getline(stream, line)){
-      std::replace(line.begin(), line.end(), ':', ' ');
-      std::istringstream linestream(line);
-      linestream >> uptime >> idletime;
-    }
-    
-   
-    uptime_long = stol(uptime);
+    std::getline(stream, line);
+    std::istringstream linestream(line);
+    linestream >> uptime >> idletime;
   }
-  return uptime_long; 
+  // uptime.erase(std::remove_if(uptime.begin(), uptime.end(), ":"), uptime.end());
+  // for (const auto c: uptime){
+  //   if(isdigit(c)){
+  //     uptime2.push_back(c);
+  //   }
+  // }
+  // LinuxParser::removeCharsFromString(uptime, " ");
+  long int uptime_ = atol(uptime.c_str());
+  return uptime_;
 }
 
 // TODO: Read and return the number of jiffies for the system
@@ -281,7 +290,7 @@ string LinuxParser::User(int pid) {
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::UpTime(int pid) {
+long int LinuxParser::UpTime(int pid) {
   string line, val;
   std::ifstream filestream(kProcDirectory + std::to_string(pid) + kStatFilename);
   if (filestream.is_open()){
@@ -290,7 +299,7 @@ long LinuxParser::UpTime(int pid) {
       for (int j; j < 22; j++){
         linestream >> val;
       }
-      return stol(val);
+      return atol(val.c_str());
     }
   }
   return 0;

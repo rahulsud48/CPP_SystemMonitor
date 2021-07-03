@@ -27,6 +27,8 @@ vector
 -
 iostream
 -
+algorithm
+-
 linux_parser.h
 /home/workspace/CPP_SystemMonitor/src/linux_parser.h
 
