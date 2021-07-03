@@ -6,29 +6,13 @@
 
 #IncludeRegexTransform: 
 
-../include/linux_parser.h
-fstream
--
-regex
--
+../include/format.h
 string
 -
 
-/home/workspace/CPP_SystemMonitor/src/linux_parser.cpp
-dirent.h
--
-unistd.h
--
-sstream
--
+/home/workspace/CPP_SystemMonitor/src/format.cpp
 string
 -
-vector
--
-iostream
--
-algorithm
--
-linux_parser.h
-/home/workspace/CPP_SystemMonitor/src/linux_parser.h
+format.h
+/home/workspace/CPP_SystemMonitor/src/format.h
 
