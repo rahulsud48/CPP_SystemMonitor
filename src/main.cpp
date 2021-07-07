@@ -11,7 +11,7 @@ using std::cout;
 int main() {
   // Processor processor;
   System system;
-  cout<< LinuxParser::UpTime()<<"\n";
+  // cout<< LinuxParser::UpTime()<<"\n";
   // float value = processor.Utilization();
   // cout << value << "\n";
   NCursesDisplay::Display(system);
