@@ -14,14 +14,6 @@ regex
 string
 -
 
-../include/ncurses_display.h
-curses.h
--
-process.h
-../include/process.h
-system.h
-../include/system.h
-
 ../include/process.h
 string
 -
@@ -48,17 +40,23 @@ process.h
 processor.h
 ../include/processor.h
 
-/home/workspace/CPP_SystemMonitor/src/main.cpp
-ncurses_display.h
-/home/workspace/CPP_SystemMonitor/src/ncurses_display.h
-system.h
-/home/workspace/CPP_SystemMonitor/src/system.h
-processor.h
+/home/workspace/CPP_SystemMonitor/src/system.cpp
+unistd.h
 -
-linux_parser.h
+cstddef
+-
+set
 -
 string
 -
-iostream
+vector
 -
+process.h
+/home/workspace/CPP_SystemMonitor/src/process.h
+processor.h
+/home/workspace/CPP_SystemMonitor/src/processor.h
+system.h
+/home/workspace/CPP_SystemMonitor/src/system.h
+linux_parser.h
+/home/workspace/CPP_SystemMonitor/src/linux_parser.h
 
