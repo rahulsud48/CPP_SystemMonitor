@@ -30,9 +30,13 @@ Processor& System::Cpu() {
 void System::CreateProcesses(){
     vector<int> pids = LinuxParser::Pids();
     for (int pid : pids) {
-        processes_.push_back(Process(pid));
-    }
-    
+        Process new_process(pid);
+        if (new_process.Command() == "" || new_process.Ram()==""){
+            continue;
+        } else {
+            processes_.emplace_back(new_process);
+        }  
+    }  
 }
 
 // TODO: Return a container composed of the system's processes

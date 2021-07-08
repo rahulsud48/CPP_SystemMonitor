@@ -57,9 +57,7 @@ vector<int> LinuxParser::Pids() {
   DIR* directory = opendir(kProcDirectory.c_str());
   struct dirent* file;
   while ((file = readdir(directory)) != nullptr) {
-    // Is this a directory?
     if (file->d_type == DT_DIR) {
-      // Is every character of the name a digit?
       string filename(file->d_name);
       if (std::all_of(filename.begin(), filename.end(), isdigit)) {
         int pid = stoi(filename);
@@ -86,19 +84,14 @@ float LinuxParser::MemoryUtilization() {
       std::istringstream linestream(line);
       while (linestream >> key >> value >> size){
         if (key == "MemTotal:"){
-          // cout << "Total Memory in file: " << value;
           totalmemory = value;
-          // cout << "Total Memory read: " << totalmemory << "\n";
         }
         if (key == "MemFree:"){
-          // cout << "Available Memory in file: " << value;
           freememory = value;
-          // cout << "Available Memory read: " << availablememory << "\n";
         }
       }
     }
   }
-  // cout << (availablememory/totalmemory) << "\n";
   return (totalmemory - freememory)/totalmemory;
 }
 
@@ -112,20 +105,12 @@ void LinuxParser::removeCharsFromString( std::string &str, char* charsToRemove )
 long int LinuxParser::UpTime() {
   string uptime, idletime, line;
   string uptime2="";
-  // char chars[] = ":";
   std::ifstream stream(kProcDirectory + kUptimeFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
     linestream >> uptime >> idletime;
   }
-  // uptime.erase(std::remove_if(uptime.begin(), uptime.end(), ":"), uptime.end());
-  // for (const auto c: uptime){
-  //   if(isdigit(c)){
-  //     uptime2.push_back(c);
-  //   }
-  // }
-  // LinuxParser::removeCharsFromString(uptime, " ");
   long int uptime_ = atol(uptime.c_str());
   return uptime_;
 }
@@ -302,7 +287,8 @@ long int LinuxParser::UpTime(int pid) {
       for (int j; j < 22; j++){
         linestream >> val;
       }
-      return atol(val.c_str());
+      int upTimePid = UpTime() - std::atol(val.c_str())/sysconf(_SC_CLK_TCK);
+      return upTimePid;
     }
   }
   return 0;
