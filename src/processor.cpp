@@ -7,7 +7,7 @@ float Processor::Utilization() {
     int count = 0;
     int idle, iowait;
     float cpu_perc;
-    for (int  i = 0; i < cpu_data.size(); i++){
+    for (unsigned  i = 0; i < cpu_data.size(); i++){
         string s = cpu_data[i];
         int x = 0;
         stringstream ss(s);
