@@ -29,6 +29,7 @@ Processor& System::Cpu() {
 
 void System::CreateProcesses(){
     vector<int> pids = LinuxParser::Pids();
+    processes_.clear();
     for (int pid : pids) {
         Process new_process(pid);
         if (new_process.Command() == "" || new_process.Ram()==""){
@@ -42,6 +43,7 @@ void System::CreateProcesses(){
 // TODO: Return a container composed of the system's processes
 vector<Process>& System::Processes() {
     System::CreateProcesses();
+    std::sort(processes_.begin(), processes_.end());
     return processes_; 
 }
 
